@@ -1,0 +1,357 @@
+---
+title: "House Price Prediction"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+
+```{r}
+#Loading the MASS Library
+library(MASS)
+
+#Storing the Boston Dataset in a variable 'df'
+df<-Boston
+print(df)
+```
+```{r}
+#Getting the summary of the Boston Dataset
+summary(df)
+```
+```{r}
+#Loading the library GGPLOT2
+library(ggplot2)
+
+#Drawing a histogram for CRIM Feature i.e. Per Capita Crime Rate by Town
+p1<-qplot(x = crim, data = df, binwidth = 2)
+print(p1)
+```
+```{r}
+#Drawing a histogram for ZN i.e. Proportion of Residential land zoned
+p2<-qplot(x = zn, data = df, binwidth = 4)
+print(p2)
+```
+```{r}
+#Drawing a histogram for Indus i.e. Proportion of non-retail business
+p3<-qplot(x = indus, data = df, binwidth = 1)
+print(p3)
+```
+
+```{r}
+#Drawing a histogram for CHAS i.e. Charles River Dummy Variable
+p4<-qplot(x = chas, data = df)
+print(p4)
+```
+```{r}
+#Drawing a histogram for Niric Oxide Concentration
+p5<-qplot(x = nox, data = df)
+print(p5)
+```
+```{r}
+#Drawing a histogram for RM i.e. Average no of rooms
+p6<-qplot(x = rm, data = df)
+print(p6)
+```
+```{r}
+#Drawing a histogram for age i.e.Proportion of units built before 1940
+p7<-qplot(x = age, data = df, binwidth = 2)
+print(p7)
+```
+```{r}
+#Drwaing a histogram for dis i.e. Distance to five Boston employment centers
+p8<-qplot(x = dis, data = df)
+print(p8)
+```
+```{r}
+#Drawing a histogram for RAD i.e. Index of accessibility to radial highways
+p9<-qplot(x = rad, data = df, binwidth = 1)
+print(p9)
+```
+```{r}
+#Drawing a histogram for TAX i.e. Property tax rate per 10K
+p10<-qplot(x = tax, data = df, binwidth = 25)
+print(p10)
+```
+```{r}
+#Drawing a histogram for PTRATIO i.e. Teacher Student ratio
+p11<-qplot(x = ptratio, data = df)
+print(p11)
+```
+```{r}
+#Drawing a histogram for black i.e. Proportion of Black people
+p12<-qplot(x = black, data = df, binwidth = 20)
+print(p12)
+```
+```{r}
+#Drawing a histogram for lstat i.e. Percentage of lower status of population
+p13<-qplot(x = lstat, data = df, binwidth = 1)
+print(p13)
+```
+```{r}
+#Drawing a histogram for medv i.e. Median value of Homes in 1K
+qplot(x = medv, data = df, binwidth = 2)
+```
+```{r}
+#importing the Grid Extra Library
+library(gridExtra)
+
+grid.arrange(p1,p2,p3,p4, ncol = 2)
+```
+```{r}
+grid.arrange(p5,p6,p7,p8, ncol = 2)
+```
+```{r}
+grid.arrange(p9,p10,p11,p12,p13, ncol = 2)
+```
+```{r}
+lr1<-lm(df$crim ~ df$medv)
+summary(lr1)
+```
+```{r}
+ggplot(data = df,aes(x = crim,y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr2<-lm(df$zn ~ df$medv)
+summary(lr2)
+```
+```{r}
+ggplot(data = df, aes(x = zn, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr3<-lm(df$indus ~ df$medv)
+summary(lr3)
+```
+```{r}
+ggplot(data = df, aes(x = indus, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr4<-lm(df$chas ~ df$medv)
+summary(lr4)
+```
+```{r}
+ggplot(data = df, aes(x = chas, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr5<-lm(df$nox ~ df$medv)
+summary(lr5)
+```
+```{r}
+ggplot(data = df, aes(x = nox, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr6<-lm(df$rm ~ df$medv)
+summary(lr6)
+```
+```{r}
+ggplot(data = df, aes(x = rm, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr7<-lm(df$age ~ df$medv)
+summary(lr7)
+```
+```{r}
+ggplot(data = df, aes(x = age, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr8<-lm(df$dis~df$medv)
+summary(lr8)
+```
+```{r}
+ggplot(data = df, aes(x = dis, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr9<-lm(df$rad~df$medv)
+summary(lr9)
+```
+```{r}
+ggplot(data = df, aes(x = rad, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr10<-lm(df$tax~df$medv)
+summary(lr10)
+```
+```{r}
+ggplot(data = df, aes(x = tax, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr11<-lm(df$ptratio~df$medv)
+summary(lr11)
+```
+```{r}
+ggplot(data = df, aes(x = ptratio, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr12<-lm(df$black~df$medv)
+summary(lr12)
+```
+```{r}
+ggplot(data = df, aes(x = black, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+lr13<-lm(df$lstat~df$medv)
+summary(lr13)
+```
+```{r}
+ggplot(data = df, aes(x = lstat, y = medv))+
+  geom_point(color = "red")+
+  geom_smooth(formula = y~x, method = lm, color = "blue")
+```
+```{r}
+corelation<-cor(df)
+print(corelation)
+```
+```{r}
+library(corrplot)
+corrplot(corelation, method = "number")
+```
+
+```{r}
+library(caTools)
+set.seed(123)
+sampleSplit<-sample.split(df, SplitRatio = 0.75)
+boston_train<-subset(df, sampleSplit == TRUE)
+boston_test<-subset(df, sampleSplit == FALSE)
+```
+
+
+```{r}
+multiple_lr_model1<-lm(medv~., data = boston_train)
+summary(multiple_lr_model1)
+```
+```{r}
+model2=lm(medv~.+factor(chas)-chas,data=boston_train)
+summary(model2)
+```
+```{r}
+model3=lm(medv~.+chas:dis,data = boston_train)
+summary(model3)
+```
+```{r}
+model4=lm(medv~.+chas:dis-indus,data = boston_train)
+summary(model4)
+```
+
+
+```{r}
+coefficients(model4)
+```
+
+
+```{r}
+boston_test$predicted_medv<-predict(model4,boston_test,type = "response")
+#print(boston_test)
+cor(boston_test$medv, boston_test$predicted_medv)
+```
+
+
+```{r}
+library(party)
+dtmodel1<-ctree(medv~., data = boston_train)
+boston_test$dtree<-predict(dtmodel1,boston_test,type = "response")
+#View(boston_test)
+cor(boston_test$medv, boston_test$dtree)
+```
+
+
+```{r}
+library(car)
+vif(multiple_lr_model1)
+```
+```{r}
+library(psych)
+new_data<-df[,-14]
+#View(new_data)
+datamatrix<-cor(new_data)
+KMO(r = datamatrix)
+```
+```{r}
+print(cortest.bartlett(datamatrix, nrow(df)))
+```
+```{r}
+ev<-eigen(cor(new_data))
+print(ev$values)
+```
+```{r}
+part.fa<-ev$values/sum(ev$values)*100
+print(part.fa)
+```
+```{r}
+factors<-c(1:13)
+eigen_values<-ev$values
+Scree<-data.frame(factors, eigen_values)
+ggplot(data = Scree, aes(x = factors, y = eigen_values))+
+  geom_point(color = "red")+
+  geom_line(color = "blue")+
+  ggtitle("Scree Plot")
+```
+```{r}
+fanone<-fa(r = new_data, nfactors = 3, rotate = "none", fm = "pa")
+print(fanone)
+```
+```{r}
+fa.diagram(fanone)
+```
+```{r}
+fa1<-fa(r = new_data, nfactors = 3, rotate = "varimax", fm = "pa")
+print(fa1)
+```
+```{r}
+fa.diagram(fa1)
+```
+```{r}
+head(fa1$scores)
+```
+```{r}
+new_boston_data<-cbind(fa1$scores, df$medv)
+new_boston_data<-data.frame(new_boston_data)
+names(new_boston_data)<-c("PA2", "PA1", "PA3", "MEDV")
+head(new_boston_data)
+```
+```{r}
+new_train<-subset(new_boston_data, sampleSplit == TRUE)
+new_test<-subset(new_boston_data, sampleSplit == FALSE)
+```
+
+```{r}
+multiple_lr_model2<-lm(MEDV~., data = new_train)
+summary(multiple_lr_model2)
+```
+```{r}
+vif(multiple_lr_model2)
+```
+```{r}
+new_test$ml_predict<-predict(multiple_lr_model2, new_test, type = "response")
+#print(new_test)
+cor(new_test$MEDV, new_test$ml_predict)
+```
+```{r}
+dtmodel2<-ctree(MEDV~., data = new_train)
+new_test$dtree<-predict(dtmodel2,new_test,type = "response")
+#View(new_test)
+cor(new_test$MEDV, new_test$dtree)
+```
